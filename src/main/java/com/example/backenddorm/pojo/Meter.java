@@ -1,0 +1,29 @@
+package com.example.backenddorm.pojo;
+
+import lombok.Data;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Data
+@Document("Meter")
+public class Meter {
+    @Id
+    private String _Id;
+    private String room_number;
+    private String utilities_type;
+    private String monthAndYear;
+    private double consumption;
+    private double sum;
+
+    public Meter() {
+    }
+
+    public Meter(String _Id, String room_number, String utilities_type, String monthAndYear, double consumption, double sum) {
+        this._Id = _Id;
+        this.room_number = room_number;
+        this.utilities_type = utilities_type;
+        this.monthAndYear = monthAndYear;
+        this.consumption = consumption;
+        this.sum = sum;
+    }
+}

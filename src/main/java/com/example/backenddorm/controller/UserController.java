@@ -6,7 +6,10 @@ import com.example.backenddorm.pojo.User;
 import com.example.backenddorm.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCrypt;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
+
 
 import java.util.List;
 
@@ -24,12 +27,44 @@ public class UserController {
         return userService.getUser();
     }
 
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public User login(@RequestParam String username, @RequestParam String password) throws Exception {
+     try {
+         User user = userService.getUserByUsername(username);
+         if (user == null) {
+             throw new Exception("Cant find this email");
+         }
+         else {
+             if (BCrypt.checkpw(password, user.getPassword())) {
+                 System.out.println("Login Successfully");
+                 user.setPassword("");
+                 return user;
+             }
+             else {
+                 System.out.println("Login failed");
+                 return null;
+             }
+         }
+     }
+     catch (Exception e) {
+         throw new Exception(e);
+     }
+    }
     @RequestMapping(value ="/addUser", method = RequestMethod.POST)
     public boolean addReserve(@RequestBody User user){
         try {
+            User newUser = userService.getUserByUsername(user.getUsername());
+
+            if (newUser != null) {
+                System.out.println("This username is already taken");
+                return false;
+            }
+            String passHashed = BCrypt.hashpw(user.getPassword(), BCrypt.gensalt());
+            user.setPassword(passHashed);
             userService.addUser(user);
             return true;
         }catch (Exception e){
+            System.out.println(e.getMessage());
             return false;
         }
     }

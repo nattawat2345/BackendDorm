@@ -4,14 +4,19 @@ package com.example.backenddorm.service;
 import com.example.backenddorm.pojo.User;
 import com.example.backenddorm.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public class UserService {
+
     @Autowired
     private UserRepository userRepository;
+
+    private BCrypt encoder;
 
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
@@ -51,6 +56,15 @@ public class UserService {
         try {
             return userRepository.findByRoomNumber(room_number);
         } catch (Exception e) {
+            return null;
+        }
+    }
+
+    public User getUserByUsername(String username) {
+        try {
+            return  userRepository.findByUsername(username);
+        }
+        catch (Exception e) {
             return null;
         }
     }

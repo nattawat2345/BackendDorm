@@ -56,11 +56,12 @@ public class ReserveController {
         }
     }
 
-    @RequestMapping(value ="/getReserveId/{room_number}", method = RequestMethod.GET)
-    public ResponseEntity<?> getReserveNum(@PathVariable("room_number") String room_number){
+    @RequestMapping(value ="/getReserveNum/{room_number}", method = RequestMethod.GET)
+    public List<Reserve> getReserveNum(@PathVariable("room_number") String room_number){
         try {
-            Reserve reserve = reserveService.getRoomByNumber(room_number);
-            return ResponseEntity.ok(reserve);
+            List<Reserve> reserves = reserveService.getRoomByNumber(room_number);
+            List<Reserve> ans = reserves.stream().filter(c -> c.getStatus().equals("reserve")).toList();
+            return ans;
         }catch (Exception e){
             return null;
         }
@@ -79,7 +80,7 @@ public class ReserveController {
     public boolean updateStatusReserve(@PathVariable("room_number") String room_number,
                                 @PathVariable("status") String status){
         try {
-            Reserve reserve = reserveService.getRoomByNumber(room_number);
+            Reserve reserve = reserveService.getRoomByNum(room_number);
             if(reserve != null) {
                 reserveService.updateStatus(new Reserve(reserve.get_id(), reserve.getRoom_number(), reserve.getFirst_name(), reserve.getLast_name(), reserve.getMobile(), reserve.getReserve_date(), reserve.getLease_date(), status));
                 return true;
@@ -89,5 +90,15 @@ public class ReserveController {
             return false;
         }
     }
+
+//    @RequestMapping(value ="/getReserveStatus/{status}", method = RequestMethod.GET)
+//    public ResponseEntity<?> getReserveStatus(@PathVariable("status") String status){
+//        try {
+//            Reserve reserve = reserveService.getRoomByNumber(status);
+//            return ResponseEntity.ok(reserve);
+//        }catch (Exception e){
+//            return null;
+//        }
+//    }
 }
 

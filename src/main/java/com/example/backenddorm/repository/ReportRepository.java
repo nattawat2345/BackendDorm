@@ -1,10 +1,9 @@
 package com.example.backenddorm.repository;
 
-import com.example.backenddorm.pojo.Room;
+import com.example.backenddorm.pojo.Report;
 import org.springframework.data.mongodb.repository.MongoRepository;
-import org.springframework.data.mongodb.repository.Query;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface RoomRepository extends MongoRepository<Room, String> {
+public interface ReportRepository  extends MongoRepository<Report,String> {
 }

@@ -4,9 +4,11 @@ import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.io.Serializable;
+
 @Data
 @Document("Meter")
-public class Meter {
+public class Meter implements Serializable {
     @Id
     private String _Id;
     private String room_number;

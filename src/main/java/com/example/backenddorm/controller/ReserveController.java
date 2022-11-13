@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class ReserveController {
@@ -55,13 +56,37 @@ public class ReserveController {
         }
     }
 
-    @RequestMapping(value ="/getReserveNum/{room_number}", method = RequestMethod.GET)
+    @RequestMapping(value ="/getReserveId/{room_number}", method = RequestMethod.GET)
     public ResponseEntity<?> getReserveNum(@PathVariable("room_number") String room_number){
         try {
             Reserve reserve = reserveService.getRoomByNumber(room_number);
             return ResponseEntity.ok(reserve);
         }catch (Exception e){
             return null;
+        }
+    }
+    @RequestMapping(value ="/getReserveId/{id}", method = RequestMethod.GET)
+    public ResponseEntity<?> getReserveId(@PathVariable("id") String id){
+        try {
+            Optional<Reserve> reserve = reserveService.getRoomById(id);
+            return ResponseEntity.ok(reserve);
+        }catch (Exception e){
+            return null;
+        }
+    }
+
+    @RequestMapping(value ="/updateStatusReserve/{room_number}/{status}", method = RequestMethod.PUT)
+    public boolean updateStatusReserve(@PathVariable("room_number") String room_number,
+                                @PathVariable("status") String status){
+        try {
+            Reserve reserve = reserveService.getRoomByNumber(room_number);
+            if(reserve != null) {
+                reserveService.updateStatus(new Reserve(reserve.get_id(), reserve.getRoom_number(), reserve.getFirst_name(), reserve.getLast_name(), reserve.getMobile(), reserve.getReserve_date(), reserve.getLease_date(), status));
+                return true;
+            }
+            return true;
+        }catch (Exception e){
+            return false;
         }
     }
 }

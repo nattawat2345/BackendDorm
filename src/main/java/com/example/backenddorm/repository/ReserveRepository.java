@@ -11,4 +11,5 @@ import org.springframework.stereotype.Repository;
 public interface ReserveRepository  extends MongoRepository<Reserve, String> {
     @Query(value = "{room_number:'?0'}")
     public Reserve findByRoomNumber(String room_number);
+
 }

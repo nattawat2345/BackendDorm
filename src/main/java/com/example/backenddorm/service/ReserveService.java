@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ReserveService {
@@ -55,6 +56,23 @@ public class ReserveService {
             return reserveRepository.findByRoomNumber(room_number);
         } catch (Exception e) {
             return null;
+        }
+    }
+
+    public Optional<Reserve> getRoomById (String id) {
+        try {
+            return reserveRepository.findById(id);
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    public boolean updateStatus(Reserve reserve){
+        try {
+            reserveRepository.save(reserve);
+            return true;
+        }catch (Exception e){
+            return false;
         }
     }
 }

@@ -3,8 +3,10 @@ package com.example.backenddorm.controller;
 import com.example.backenddorm.pojo.Room;
 import com.example.backenddorm.service.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.File;
 import java.util.List;
 
 @RestController
@@ -29,7 +31,7 @@ public class RoomController {
         Room room = roomService.getById(id);
         return room;
     }
-    @PostMapping("/add")
+    @PostMapping(value ="/add")
     public String addNewRoom(@RequestBody Room room){
         return roomService.addNewRoomType(room);
     }

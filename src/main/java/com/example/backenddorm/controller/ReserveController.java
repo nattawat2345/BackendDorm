@@ -76,13 +76,13 @@ public class ReserveController {
         }
     }
 
-    @RequestMapping(value ="/updateStatusReserve/{room_number}/{status}", method = RequestMethod.PUT)
-    public boolean updateStatusReserve(@PathVariable("room_number") String room_number,
-                                @PathVariable("status") String status){
+    @RequestMapping(value ="/updateStatusReserve/{reserveId}", method = RequestMethod.PUT)
+    public boolean updateStatusReserve(@PathVariable("reserveId") String reserveId){
         try {
-            Reserve reserve = reserveService.getRoomByNum(room_number);
+            Optional<Reserve> reserve = reserveService.getRoomById(reserveId);
+            String status = "cancle";
             if(reserve != null) {
-                reserveService.updateStatus(new Reserve(reserve.get_id(), reserve.getRoom_number(), reserve.getFirst_name(), reserve.getLast_name(), reserve.getMobile(), reserve.getReserve_date(), reserve.getLease_date(), status));
+                reserveService.updateStatus(new Reserve(reserve.get().get_id(), reserve.get().getRoom_number(), reserve.get().getFirst_name(), reserve.get().getLast_name(), reserve.get().getMobile(), reserve.get().getReserve_date(), reserve.get().getLease_date(), status));
                 return true;
             }
             return true;

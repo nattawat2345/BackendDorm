@@ -51,9 +51,17 @@ public class ReserveService {
         }
     }
 
-    public Reserve getRoomByNumber (String room_number) {
+    public List<Reserve> getRoomByNumber (String room_number) {
         try {
             return reserveRepository.findByRoomNumber(room_number);
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    public Reserve getRoomByNum (String room_number) {
+        try {
+            return reserveRepository.findByNum(room_number);
         } catch (Exception e) {
             return null;
         }
@@ -73,6 +81,14 @@ public class ReserveService {
             return true;
         }catch (Exception e){
             return false;
+        }
+    }
+
+    public Reserve getRoomByStatus (String status) {
+        try {
+            return reserveRepository.findByStatusRoom(status);
+        } catch (Exception e) {
+            return null;
         }
     }
 }

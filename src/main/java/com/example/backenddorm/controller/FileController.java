@@ -23,10 +23,11 @@ public class FileController {
                 String uri = fileService.upload(file);
                 uriImage.add(uri);
             }
-//            System.out.println(fileService.upload(file));
+            System.out.println(uriImage);
             return uriImage;
         }
         catch (Exception e){
+            System.out.println(e.getMessage());
             return null;
         }
 

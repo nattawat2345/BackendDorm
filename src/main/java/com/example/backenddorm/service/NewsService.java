@@ -1,0 +1,49 @@
+package com.example.backenddorm.service;
+
+import com.example.backenddorm.pojo.News;
+import com.example.backenddorm.repository.NewsRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+public class NewsService {
+    @Autowired
+    private NewsRepository newsRepository;
+
+    public NewsService(NewsRepository newsRepository) {
+        this.newsRepository = newsRepository;
+    }
+
+    public List<News> getNews(){
+        return newsRepository.findAll();
+    }
+
+    public boolean addNews(News news){
+        try {
+            newsRepository.insert(news);
+            return true;
+        }catch (Exception e){
+            return false;
+        }
+    }
+
+    public boolean updateNews(News news){
+        try{
+            newsRepository.save(news);
+            return true;
+        }catch (Exception e){
+            return false;
+        }
+    }
+
+    public boolean deleteNews(News news){
+        try {
+            newsRepository.delete(news);
+            return true;
+        }catch (Exception e){
+            return false;
+        }
+    }
+}

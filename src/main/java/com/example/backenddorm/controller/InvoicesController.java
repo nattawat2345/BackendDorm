@@ -3,6 +3,7 @@ package com.example.backenddorm.controller;
 
 
 import com.example.backenddorm.pojo.Invoices;
+import com.example.backenddorm.pojo.Reserve;
 import com.example.backenddorm.service.InvoicesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -63,6 +64,27 @@ public class InvoicesController {
     public ResponseEntity<?> getInvoiceNum(@PathVariable("room_number") String room_number){
         try {
             Invoices invoices = invoicesService.getRoomByNumber(room_number);
+            return ResponseEntity.ok(invoices);
+        }catch (Exception e){
+            return null;
+        }
+    }
+
+    @RequestMapping(value ="/getInvoice/{room_number}/{month}/{year}", method = RequestMethod.GET)
+    public ResponseEntity<?> getInvoice(@PathVariable("room_number") String room_number, @PathVariable("month") String month, @PathVariable("year") int year){
+        try {
+            Invoices invoices = invoicesService.getInvoiceByNum(room_number, month, year);
+            System.out.println(room_number+""+month+""+year);
+            return ResponseEntity.ok(invoices);
+        }catch (Exception e){
+            return null;
+        }
+    }
+
+    @RequestMapping(value ="/getRoomInvoice/{month}/{year}", method = RequestMethod.GET)
+    public ResponseEntity<?> getRoomInvoice(@PathVariable("month") String month, @PathVariable("year") int year){
+        try {
+            List<Invoices> invoices = invoicesService.getRoomInvoice(month, year);
             return ResponseEntity.ok(invoices);
         }catch (Exception e){
             return null;

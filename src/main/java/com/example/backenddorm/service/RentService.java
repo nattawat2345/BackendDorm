@@ -3,6 +3,7 @@ package com.example.backenddorm.service;
 
 
 import com.example.backenddorm.pojo.Rent;
+import com.example.backenddorm.pojo.Reserve;
 import com.example.backenddorm.repository.RentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -65,7 +66,6 @@ public class RentService {
             return false;
         }
     }
-
 
 
 }

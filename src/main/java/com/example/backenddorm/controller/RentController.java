@@ -3,6 +3,7 @@ package com.example.backenddorm.controller;
 
 
 import com.example.backenddorm.pojo.Rent;
+import com.example.backenddorm.pojo.Reserve;
 import com.example.backenddorm.service.RentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -69,6 +70,16 @@ public class RentController {
             return true;
         }catch (Exception e){
             return false;
+        }
+    }
+
+    @RequestMapping(value ="/getRoomNum/{room_number}", method = RequestMethod.GET)
+    public Rent getReserveNum(@PathVariable("room_number") String room_number){
+        try {
+            Rent rent = rentService.getRoomByNumber(room_number);
+            return rent;
+        }catch (Exception e){
+            return null;
         }
     }
 }

@@ -34,7 +34,7 @@ public class UserService {
         }
     }
 
-    public boolean updateReserve(User user){
+    public boolean updateUser(User user){
         try {
 //            userRepository.save(user);
             return true;
@@ -43,9 +43,9 @@ public class UserService {
         }
     }
 
-    public boolean deleteReserve(User user){
+    public boolean deleteUser(String id){
         try {
-            userRepository.delete(user);
+            userRepository.deleteById(id);
             return true;
         }catch (Exception e){
             return false;

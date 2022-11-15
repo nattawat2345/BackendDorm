@@ -72,17 +72,17 @@ public class UserController {
     @RequestMapping(value ="/updateUser", method = RequestMethod.POST)
     public boolean updateUser(@RequestBody User user){
         try {
-            userService.updateReserve(user);
+            userService.updateUser(user);
             return true;
         }catch (Exception e){
             return false;
         }
     }
 
-    @RequestMapping(value ="/deleteUser", method = RequestMethod.POST)
-    public boolean deleteUser(@RequestBody User user){
+    @RequestMapping(value ="/deleteUser/{id}", method = RequestMethod.DELETE)
+    public boolean deleteUser(@PathVariable("id") String id){
         try {
-            userService.deleteReserve(user);
+            userService.deleteUser(id);
             return true;
         }catch (Exception e){
             return false;

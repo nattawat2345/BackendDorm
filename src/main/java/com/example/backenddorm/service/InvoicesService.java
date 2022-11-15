@@ -58,5 +58,45 @@ public class InvoicesService {
             return null;
         }
     }
+
+    public Invoices getInvoiceByNum (String room_number, String month, int year){
+        try {
+            return invoicesRepository.findInvoicesByNum(room_number, month, year);
+        }catch (Exception e){
+            return null;
+        }
+    }
+
+    public List<Invoices> getRoomInvoice (String month, int year){
+        try {
+            return invoicesRepository.findRoom(month, year);
+        }catch (Exception e){
+            return null;
+        }
+    }
+
+    public List<Invoices> getInvoiceByNumber (String room_number){
+        try {
+            return invoicesRepository.findRoomsByNumber(room_number);
+        }catch (Exception e){
+            return null;
+        }
+    }
+
+    public Invoices getMonth (String month){
+        try {
+            return invoicesRepository.findByMonth(month);
+        }catch (Exception e){
+            return null;
+        }
+    }
+
+    public Invoices getYear (String year){
+        try {
+            return invoicesRepository.findByYear(year);
+        }catch (Exception e){
+            return null;
+        }
+    }
 }
 

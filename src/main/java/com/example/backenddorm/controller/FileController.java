@@ -5,6 +5,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @RestController
 @RequestMapping("file")
 public class FileController {
@@ -13,13 +16,18 @@ public class FileController {
     private FileService fileService;
 
     @PostMapping("upload")
-    public String upload(@RequestBody MultipartFile file) {
+    public List upload(@RequestBody List<MultipartFile> files) {
         try {
-            System.out.println(fileService.upload(file));
-            return fileService.upload(file);
+            List<String> uriImage = new ArrayList<>();
+            for (MultipartFile  file : files) {
+                String uri = fileService.upload(file);
+                uriImage.add(uri);
+            }
+//            System.out.println(fileService.upload(file));
+            return uriImage;
         }
         catch (Exception e){
-            return e.getMessage();
+            return null;
         }
 
     }

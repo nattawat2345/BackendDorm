@@ -23,7 +23,6 @@ public class FileService {
                 .retrieve()
                 .bodyToMono(ImageData.class)
                 .block();
-
         return result.getData().getLink();
     }
 }

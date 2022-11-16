@@ -29,6 +29,11 @@ public class MeterController {
         return meters;
     }
 
+    @GetMapping("/getbymonthandyear/{monthandyear}/{type}")
+    public List<Meter> getByMonth(@PathVariable String monthandyear, @PathVariable String type) {
+        List<Meter> meters = meterService.getByMonthAndYear(monthandyear,type);
+        return meters;
+    }
     @PostMapping("/add")
     public String addMeter(@RequestBody Meter meter) {
         return meterService.addMeter(meter);

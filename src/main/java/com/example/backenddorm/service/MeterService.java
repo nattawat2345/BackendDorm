@@ -31,5 +31,8 @@ public class MeterService {
     public List<Meter> getByType(String type){
         return meterRepository.findByName(type);
     }
+    public List<Meter> getByMonthAndYear(String monthYear, String type){
+        return meterRepository.findByMonthAndYear(monthYear, type);
+    }
 
 }

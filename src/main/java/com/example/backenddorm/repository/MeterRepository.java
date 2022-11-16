@@ -12,4 +12,7 @@ public interface MeterRepository extends MongoRepository<Meter,String> {
     @Query(value = "{utilities_type: '?0'}")
     public List<Meter> findByName(String type);
 
+    @Query(value = "{monthAndYear: '?0', utilities_type: '?1'}")
+    public List<Meter> findByMonthAndYear(String month, String type);
+
 }

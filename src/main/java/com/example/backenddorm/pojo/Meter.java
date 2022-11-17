@@ -18,8 +18,10 @@ public class Meter implements Serializable {
     private double sum;
     private int used_unit;
 
+    private int used_unit;
     public Meter() {
     }
+
 
     public Meter(String _Id, String room_number, String utilities_type, String monthAndYear, double consumption, double sum,int used_unit) {
         this._Id = _Id;

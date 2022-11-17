@@ -40,7 +40,7 @@ public class InvoicesController {
         }
     }
 
-    @RequestMapping(value ="/updateInvoice", method = RequestMethod.POST)
+    @RequestMapping(value ="/updateInvoice", method = RequestMethod.PUT)
     public boolean updateInvoice(@RequestBody Invoices invoice){
         try {
             invoicesService.updateInvoice(invoice);

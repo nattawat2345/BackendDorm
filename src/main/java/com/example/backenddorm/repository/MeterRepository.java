@@ -16,5 +16,7 @@ public interface MeterRepository extends MongoRepository<Meter,String> {
     @Query("{'room_number' : ?0, 'utilities_type': ?1 ,'monthAndYear' : ?2}")
     public Meter findMeterInvoice(String room_number, String utilities_type, String monthAndYear);
 
+    @Query(value = "{monthAndYear: '?0', utilities_type: '?1'}")
+    public List<Meter> findByMonthAndYear(String month, String type);
 
 }

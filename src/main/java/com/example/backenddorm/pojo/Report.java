@@ -6,6 +6,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 @Data
@@ -16,9 +17,9 @@ public class Report implements Serializable {
     private String room_number;
     private String name;
     private String content;
-    private String date;
+    private String  date;
     private String topic;
-    private boolean isFix;
+    private boolean status;
     private List<Comment> comments;
     private List<String> image;
 

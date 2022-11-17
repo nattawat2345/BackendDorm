@@ -1,15 +1,14 @@
 package com.example.backenddorm.controller;
 
 import com.example.backenddorm.pojo.Meter;
-import com.example.backenddorm.pojo.Room;
 import com.example.backenddorm.service.MeterService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("meter")
 public class MeterController {
     @Autowired
     private MeterService meterService;
@@ -33,5 +32,16 @@ public class MeterController {
     public String addMeter(@RequestBody Meter meter) {
         return meterService.addMeter(meter);
 
+    }
+
+    @RequestMapping(value ="/getMeterInvoice/{room_number}/{type}/{monthYear}", method = RequestMethod.GET)
+    public ResponseEntity<?> getMeterofInvoice(@PathVariable("room_number") String room_number, @PathVariable("type") String type, @PathVariable("monthYear") String monthYear){
+        try {
+            Meter meter = meterService.getMeterOfInvoice(room_number, type, monthYear);
+            System.out.println(room_number+""+type+""+monthYear);
+            return ResponseEntity.ok(meter);
+        }catch (Exception e){
+            return null;
+        }
     }
 }

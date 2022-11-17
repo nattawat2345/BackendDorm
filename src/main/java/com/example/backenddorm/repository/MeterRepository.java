@@ -1,5 +1,6 @@
 package com.example.backenddorm.repository;
 
+import com.example.backenddorm.pojo.Invoices;
 import com.example.backenddorm.pojo.Meter;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
@@ -11,5 +12,9 @@ import java.util.List;
 public interface MeterRepository extends MongoRepository<Meter,String> {
     @Query(value = "{utilities_type: '?0'}")
     public List<Meter> findByName(String type);
+
+    @Query("{'room_number' : ?0, 'utilities_type': ?1 ,'monthAndYear' : ?2}")
+    public Meter findMeterInvoice(String room_number, String utilities_type, String monthAndYear);
+
 
 }

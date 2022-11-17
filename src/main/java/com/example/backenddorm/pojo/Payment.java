@@ -11,16 +11,16 @@ import java.io.Serializable;
 public class Payment implements Serializable {
     @Id
     private String _id;
-    private String payment_bank;
+    private double amount;
     private String payment_date;
     private String payment_time;
     private String payment_note;
     private String idInvoice;
     private String url;
 
-    public Payment(String _id, String payment_bank, String payment_date, String payment_time, String payment_note, String idInvoice, String url) {
+    public Payment(String _id, double amount, String payment_date, String payment_time, String payment_note, String idInvoice, String url) {
         this._id = _id;
-        this.payment_bank = payment_bank;
+        this.amount = amount;
         this.payment_date = payment_date;
         this.payment_time = payment_time;
         this.payment_note = payment_note;

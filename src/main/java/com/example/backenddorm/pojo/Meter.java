@@ -18,7 +18,6 @@ public class Meter implements Serializable {
     private double sum;
     private int used_unit;
 
-    private int used_unit;
     public Meter() {
     }
 

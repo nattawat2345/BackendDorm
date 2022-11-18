@@ -28,7 +28,7 @@ public class ReportController {
         return reportService.addReport(report);
     }
     @PutMapping("/update")
-    public String updateReport(Report report){
+    public String updateReport(@RequestBody Report report){
         return reportService.updateReport(report);
     }
 

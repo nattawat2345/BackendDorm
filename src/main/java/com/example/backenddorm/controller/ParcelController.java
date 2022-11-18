@@ -54,9 +54,9 @@ public class ParcelController {
     }
 
     @RequestMapping(value ="/getParcelNum/{room_number}", method = RequestMethod.GET)
-    public Parcel getParcelNum(@PathVariable("room_number") String room_number){
+    public List<Parcel> getParcelNum(@PathVariable("room_number") String room_number){
         try {
-            Parcel parcel = parcelService.getRoomByNumber(room_number);
+            List<Parcel> parcel = parcelService.getRoomByNumber(room_number);
             return parcel;
         }catch (Exception e){
             return null;
@@ -71,5 +71,20 @@ public class ParcelController {
         }catch (Exception e){
             return null;
         }
+    }
+
+    @RequestMapping(value ="/getParcelByStatus/{status}", method = RequestMethod.GET)
+    public List<Parcel> getParcelByStatus(@PathVariable("status") String status){
+        try {
+            List<Parcel> parcel = parcelService.getParcelByStatus(status);
+            return parcel;
+        }catch (Exception e){
+            return null;
+        }
+    }
+
+    @RequestMapping(value ="/countParcel/{status}", method = RequestMethod.GET)
+    public int countParcel(@PathVariable("status") String status){
+        return parcelService.countParcel(status);
     }
 }

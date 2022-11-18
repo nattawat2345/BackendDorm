@@ -48,7 +48,7 @@ public class ParcelService {
         }
     }
 
-    public Parcel getRoomByNumber(String room_number){
+    public List<Parcel> getRoomByNumber(String room_number){
         try {
             return parcelRepository.findByRoomNumber(room_number);
         }catch (Exception e){
@@ -72,5 +72,17 @@ public class ParcelService {
         }catch (Exception e){
             return null;
         }
+    }
+
+    public List<Parcel> getParcelByStatus(String status){
+        try {
+            List<Parcel> parcel = parcelRepository.findByStatus(status);
+            return parcel;
+        }catch (Exception e){
+            return null;
+        }
+    }
+    public int countParcel(String status){
+        return parcelRepository.countParcel(status);
     }
 }

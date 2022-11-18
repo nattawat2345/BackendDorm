@@ -23,7 +23,6 @@ public class Invoices implements Serializable {
     private int water_fee;
     private int expenses;
     private int fine;
-    private int discount;
     private double amount;
     private double tax;
     private double total;
@@ -33,7 +32,7 @@ public class Invoices implements Serializable {
     public Invoices() {
     }
 
-    public Invoices(String _id, String month, int year, String room_number, String invoice_date, int common_fee, int dorm_fee, int electricity_fee, int water_fee, int expenses, int fine, int discount, double amount, double tax, double total, String note, String status) {
+    public Invoices(String _id, String month, int year, String room_number, String invoice_date, int common_fee, int dorm_fee, int electricity_fee, int water_fee, int expenses, int fine, double amount, double tax, double total, String note, String status) {
         this._id = _id;
         this.month = month;
         this.year = year;
@@ -45,7 +44,6 @@ public class Invoices implements Serializable {
         this.water_fee = water_fee;
         this.expenses = expenses;
         this.fine = fine;
-        this.discount = discount;
         this.amount = amount;
         this.tax = tax;
         this.total = total;

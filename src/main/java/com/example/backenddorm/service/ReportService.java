@@ -3,6 +3,8 @@ package com.example.backenddorm.service;
 import com.example.backenddorm.pojo.Report;
 import com.example.backenddorm.repository.ReportRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,7 +19,7 @@ public class ReportService {
     }
 
     public List<Report> getAllReport(){
-        return reportRepository.findAll();
+        return reportRepository.findAll(Sort.by(Sort.Direction.DESC, "date"));
     }
     public String addReport(Report report){
         try {
@@ -33,6 +35,13 @@ public class ReportService {
             return "update report successfully";
         }catch (Exception e){
             return "update report failed";
+        }
+    }
+    public List<Report> getByStatus(boolean status){
+        try {
+            return reportRepository.findByStatus(status);
+        }catch (Exception e){
+            return null;
         }
     }
 }

@@ -1,5 +1,6 @@
 package com.example.backenddorm.service;
 
+import com.example.backenddorm.pojo.Invoices;
 import com.example.backenddorm.pojo.Meter;
 import com.example.backenddorm.repository.MeterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,4 +36,11 @@ public class MeterService {
         return meterRepository.findByMonthAndYear(monthYear, type);
     }
 
+    public Meter getMeterOfInvoice (String room_number, String type, String monthYear){
+        try {
+            return meterRepository.findMeterInvoice(room_number, type, monthYear);
+        }catch (Exception e){
+            return null;
+        }
+    }
 }

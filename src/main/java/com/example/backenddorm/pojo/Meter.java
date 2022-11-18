@@ -21,6 +21,7 @@ public class Meter implements Serializable {
     public Meter() {
     }
 
+
     public Meter(String _Id, String room_number, String utilities_type, String monthAndYear, double consumption, double sum,int used_unit) {
         this._Id = _Id;
         this.room_number = room_number;

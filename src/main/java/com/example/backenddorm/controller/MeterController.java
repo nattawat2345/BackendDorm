@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("meter")
 public class MeterController {
     @Autowired
     private MeterService meterService;

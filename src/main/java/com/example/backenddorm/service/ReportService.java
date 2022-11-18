@@ -32,6 +32,7 @@ public class ReportService {
     public String updateReport(Report report){
         try {
             reportRepository.save(report);
+//            System.out.println(report);
             return "update report successfully";
         }catch (Exception e){
             return "update report failed";

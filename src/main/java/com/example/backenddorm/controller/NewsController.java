@@ -29,7 +29,7 @@ public class NewsController {
         try {
             return newsService.addNews(news);
         }catch (Exception e){
-            return "fail";
+            return "fail to created";
         }
     }
 

@@ -32,7 +32,7 @@ public class UserController {
      try {
          User user = userService.getUserByUsername(username);
          if (user == null) {
-             throw new Exception("Cant find this email");
+             throw new Exception("Cant find this username");
          }
          else {
              if (BCrypt.checkpw(password, user.getPassword())) {

@@ -20,18 +20,18 @@ public class NewsService {
         return newsRepository.findAll();
     }
 
-    public boolean addNews(News news){
+    public String addNews(News news){
         try {
-            newsRepository.insert(news);
-            return true;
+            newsRepository.save(news);
+            return "created news successfully";
         }catch (Exception e){
-            return false;
+            return "fail";
         }
     }
 
     public boolean updateNews(News news){
         try{
-            newsRepository.save(news);
+            newsRepository.insert(news);
             return true;
         }catch (Exception e){
             return false;

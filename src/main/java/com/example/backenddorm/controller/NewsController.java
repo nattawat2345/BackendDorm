@@ -25,12 +25,11 @@ public class NewsController {
     }
 
     @RequestMapping(value ="/addNews", method = RequestMethod.POST)
-    public boolean addNews(@RequestBody News news){
+    public String addNews(@RequestBody News news){
         try {
-            newsService.addNews(news);
-            return true;
+            return newsService.addNews(news);
         }catch (Exception e){
-            return false;
+            return "fail to created";
         }
     }
 

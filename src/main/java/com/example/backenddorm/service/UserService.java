@@ -68,5 +68,9 @@ public class UserService {
             return null;
         }
     }
+
+    public int countUser() {
+        return (int) userRepository.count();
+    }
 }
 

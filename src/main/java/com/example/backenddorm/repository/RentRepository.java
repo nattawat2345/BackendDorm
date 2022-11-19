@@ -9,4 +9,6 @@ import org.springframework.stereotype.Repository;
 public interface RentRepository extends MongoRepository<Rent, String> {
     @Query(value = "{room_number:'?0'}")
     public Rent findByRoomNumber(String room_number);
+    @Query(value = "{room_status:'?0'}", count = true)
+    public Integer countRoom(String room_status);
 }

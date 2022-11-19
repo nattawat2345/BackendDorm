@@ -67,6 +67,10 @@ public class RentService {
         }
     }
 
+    public int countRoom(String status) {
+        return rentRepository.countRoom(status);
+    }
+
 
 }
 

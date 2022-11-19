@@ -82,5 +82,10 @@ public class RentController {
             return null;
         }
     }
+
+    @RequestMapping(value ="/countRoom/{status}", method = RequestMethod.GET)
+    public int countRoom(@PathVariable("status") String status){
+        return  rentService.countRoom(status);
+    }
 }
 

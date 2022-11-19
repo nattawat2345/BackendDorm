@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class InvoicesService {
@@ -54,6 +55,14 @@ public class InvoicesService {
     public Invoices getRoomByNumber (String room_number){
         try {
             return invoicesRepository.findByRoomNumber(room_number);
+        }catch (Exception e){
+            return null;
+        }
+    }
+
+    public Optional<Invoices> getInvoiceById (String id){
+        try {
+            return invoicesRepository.findById(id);
         }catch (Exception e){
             return null;
         }

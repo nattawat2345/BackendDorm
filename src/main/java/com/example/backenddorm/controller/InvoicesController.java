@@ -2,8 +2,8 @@ package com.example.backenddorm.controller;
 
 
 
+import com.example.backenddorm.pojo.Contract;
 import com.example.backenddorm.pojo.Invoices;
-import com.example.backenddorm.pojo.Reserve;
 import com.example.backenddorm.service.InvoicesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class InvoicesController {
@@ -88,6 +89,20 @@ public class InvoicesController {
             return ResponseEntity.ok(invoices);
         }catch (Exception e){
             return null;
+        }
+    }
+
+    @RequestMapping(value ="/updateStatusInvoice/{id}/{status}", method = RequestMethod.PUT)
+    public boolean updateStatus(@PathVariable("id") String id, @PathVariable("status") String status){
+        try {
+            Optional<Invoices> invoices = invoicesService.getInvoiceById(id);
+            if(invoices != null) {
+                invoicesService.updateInvoice(new Invoices(invoices.get().get_id(), invoices.get().getMonth(), invoices.get().getYear(), invoices.get().getRoom_number(), invoices.get().getInvoice_date(), invoices.get().getCommon_fee(), invoices.get().getDorm_fee(), invoices.get().getElectricity_fee(), invoices.get().getWater_fee(), invoices.get().getExpenses(), invoices.get().getFine(), invoices.get().getAmount(), invoices.get().getTax(), invoices.get().getTotal(), invoices.get().getNote(), status));
+                return true;
+            }
+            return true;
+        }catch (Exception e){
+            return false;
         }
     }
 }

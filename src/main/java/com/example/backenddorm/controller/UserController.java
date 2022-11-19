@@ -98,5 +98,10 @@ public class UserController {
             return null;
         }
     }
+
+    @RequestMapping(value ="/countUser", method = RequestMethod.GET)
+    public int countUser(){
+        return  userService.countUser();
+    }
 }
 

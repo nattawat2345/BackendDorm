@@ -23,9 +23,16 @@ public class MeterService {
 
     public String addMeter(Meter meter){
         try{
+            Meter check = meterRepository.findMeterInvoice(meter.getRoom_number(),meter.getUtilities_type(),meter.getMonthAndYear());
+            System.out.println(meter);
+            System.out.println(check);
+            if(check != null){
+                return "This room number has already existed";
+            }
             meterRepository.insert(meter);
             return "Add meter successfully";
         }catch (Exception e){
+            System.out.println("error");
             return "Can't add meter";
         }
     }

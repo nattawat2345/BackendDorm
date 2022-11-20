@@ -6,11 +6,7 @@ import com.example.backenddorm.pojo.Rent;
 import com.example.backenddorm.pojo.Reserve;
 import com.example.backenddorm.service.RentService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -86,6 +82,11 @@ public class RentController {
     @RequestMapping(value ="/countRoom/{status}", method = RequestMethod.GET)
     public int countRoom(@PathVariable("status") String status){
         return  rentService.countRoom(status);
+    }
+    @GetMapping("/countRentByType/{type}/{status}")
+    public  int countRentByType(@PathVariable String type, @PathVariable String status) throws Exception {
+        System.out.println("type: "+type+" status: "+ status);
+        return rentService.countRentByType(type,status);
     }
 }
 

@@ -2,7 +2,6 @@ package com.example.backenddorm.controller;
 
 
 
-import com.example.backenddorm.pojo.Contract;
 import com.example.backenddorm.pojo.Invoices;
 import com.example.backenddorm.service.InvoicesService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -103,6 +102,15 @@ public class InvoicesController {
             return true;
         }catch (Exception e){
             return false;
+        }
+    }
+
+    @RequestMapping(value ="/getInvoiceById/{id}", method = RequestMethod.GET)
+    public Optional<Invoices> getInvoiceById(@PathVariable("id") String id){
+        try {
+            return invoicesService.getInvoiceById(id);
+        }catch (Exception e){
+            return null;
         }
     }
 }

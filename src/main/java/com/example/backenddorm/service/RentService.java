@@ -71,6 +71,18 @@ public class RentService {
         return rentRepository.countRoom(status);
     }
 
+    public int countRentByType (String type, String status) throws Exception {
+        try{
+            System.out.println(rentRepository.countRoomType(type,status).size());
+            int count = rentRepository.countRoomType(type,status).size();
+            return count;
+        }catch (Exception e){
+            throw new Exception(e);
+        }
+
+
+    }
+
 
 }
 

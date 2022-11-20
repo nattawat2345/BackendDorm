@@ -28,5 +28,10 @@ public interface InvoicesRepository extends MongoRepository<Invoices, String> {
 
     @Query(value = "{month:'?0'}")
     public Invoices findByMonth(String month);
+
+    @Query(value = "{'month':?0, 'year': ?1, 'status':?2}")
+    public List<Invoices> countPayInvoice(String month, int year, String status);
+
+
 }
 

@@ -70,6 +70,16 @@ public class InvoicesController {
         }
     }
 
+    @RequestMapping(value ="/getListInvoiceNum/{room_number}", method = RequestMethod.GET)
+    public ResponseEntity<?> getListInvoiceNum(@PathVariable("room_number") String room_number){
+        try {
+            List<Invoices> invoices = invoicesService.getInvoiceByNumber(room_number);
+            return ResponseEntity.ok(invoices);
+        }catch (Exception e){
+            return null;
+        }
+    }
+
     @RequestMapping(value ="/getInvoice/{room_number}/{month}/{year}", method = RequestMethod.GET)
     public ResponseEntity<?> getInvoice(@PathVariable("room_number") String room_number, @PathVariable("month") String month, @PathVariable("year") int year){
         try {
@@ -111,6 +121,18 @@ public class InvoicesController {
             return invoicesService.getInvoiceById(id);
         }catch (Exception e){
             return null;
+        }
+    }
+
+    @RequestMapping(value ="/countPayInvoice/{month}/{year}/{status}", method = RequestMethod.GET)
+    public double countPayInvoice(@PathVariable("month") String month, @PathVariable("year") int year, @PathVariable("status") String status){
+        try {
+            List<Invoices> invoices = invoicesService.countPayInvoice(month, year, status);
+            System.out.println(invoices);
+            double temp = invoices.stream().mapToDouble(Invoices::getTotal).sum();
+            return temp;
+        }catch (Exception e){
+            return 0.0;
         }
     }
 }

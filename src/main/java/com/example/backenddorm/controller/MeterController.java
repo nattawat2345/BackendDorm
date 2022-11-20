@@ -1,5 +1,6 @@
 package com.example.backenddorm.controller;
 
+import com.example.backenddorm.pojo.Invoices;
 import com.example.backenddorm.pojo.Meter;
 import com.example.backenddorm.service.MeterService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,6 +49,18 @@ public class MeterController {
             return ResponseEntity.ok(meter);
         }catch (Exception e){
             return null;
+        }
+    }
+
+    @GetMapping("/countPayMeter/{monthandyear}/{type}")
+    public double countPayMeter(@PathVariable("monthandyear") String monthandyear, @PathVariable("type") String type) {
+        try {
+            List<Meter> meter = meterService.getByMonthAndYear(monthandyear, type);
+            System.out.println(meter);
+            double temp = meter.stream().mapToDouble(Meter::getSum).sum();
+            return temp;
+        }catch (Exception e){
+            return 0.0;
         }
     }
 }

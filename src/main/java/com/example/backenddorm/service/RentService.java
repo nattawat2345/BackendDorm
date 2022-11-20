@@ -83,6 +83,13 @@ public class RentService {
 
     }
 
+    public List<Rent> getByType(String type){
+        try {
+            return rentRepository.findbyRoomType(type);
+        }catch (Exception e){
+            return null;
+        }
 
+    }
 }
 

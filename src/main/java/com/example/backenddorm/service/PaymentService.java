@@ -72,4 +72,12 @@ public class PaymentService {
             return null;
         }
     }
+
+    public List<Payment> findPaymentByStatus(String payment_status){
+        try {
+            return  paymentRepository.findStatus(payment_status);
+        }catch (Exception e){
+            return null;
+        }
+    }
 }

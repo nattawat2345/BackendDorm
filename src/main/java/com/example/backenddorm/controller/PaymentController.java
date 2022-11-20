@@ -71,4 +71,14 @@ public class PaymentController {
             return null;
         }
     }
+
+    @RequestMapping(value ="/getPaymentStatus/{status}", method = RequestMethod.GET)
+    public List<Payment> getPaymentStatus(@PathVariable("status") String status){
+        try {
+            List<Payment> payment = paymentService.findPaymentByStatus(status);
+            return payment;
+        }catch (Exception e){
+            return null;
+        }
+    }
 }

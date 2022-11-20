@@ -17,4 +17,7 @@ public interface RentRepository extends MongoRepository<Rent, String> {
 
     @Query(value = "{room_type: '?0',room_status:'?1'}")
     public List<Rent> countRoomType(String type, String status);
+
+    @Query(value = "{room_type: '?0'}")
+    public List<Rent> findbyRoomType(String type);
 }

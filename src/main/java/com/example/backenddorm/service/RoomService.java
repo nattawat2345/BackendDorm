@@ -1,5 +1,6 @@
 package com.example.backenddorm.service;
 
+import com.example.backenddorm.pojo.Rent;
 import com.example.backenddorm.pojo.Room;
 import com.example.backenddorm.repository.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,9 +14,12 @@ import java.util.Optional;
 public class RoomService {
     @Autowired
     private RoomRepository roomRepository;
+    @Autowired
+    private RentService rentService;
 
-    public RoomService(RoomRepository roomRepository) {
+    public RoomService(RoomRepository roomRepository,RentService rentService) {
         this.roomRepository = roomRepository;
+        this.rentService = rentService;
     }
 
     public List<Room> getAllRoom() {
@@ -40,13 +44,21 @@ public class RoomService {
     }
     public String updateRoomType(Room room){
         try {
+            Room thisRoom = getById(room.get_id());
+            List<Rent> rents= rentService.getByType(thisRoom.getTypeName());
+//            System.out.println(room);
+            for (Rent item : rents){
+                item.setRoom_type(room.getTypeName());
+                item.setRoom_price(room.getPrice());
+//                System.out.println(item);
+                rentService.updateRent(item);
+            }
             roomRepository.save(room);
             return "update room type successfully";
         }catch (Exception e){
             return "update room type failed";
         }
     }
-
     public String deleteRoomType(String id){
         try {
             roomRepository.deleteById(id);

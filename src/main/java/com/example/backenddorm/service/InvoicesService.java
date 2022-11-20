@@ -108,5 +108,13 @@ public class InvoicesService {
         }
     }
 
+    public List<Invoices> countPayInvoice(String month, int year, String status){
+        try {
+            return invoicesRepository.countPayInvoice(month, year, status);
+        }catch (Exception e){
+            return null;
+        }
+    }
+
 }
 

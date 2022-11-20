@@ -33,7 +33,6 @@ public class RoomController {
     }
     @PostMapping(value ="/add")
     public String addNewRoom(@RequestBody Room room){
-        System.out.println(room.getImage().size());
         return roomService.addNewRoomType(room);
     }
     @PutMapping("/update")

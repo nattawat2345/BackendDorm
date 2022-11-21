@@ -22,7 +22,7 @@ public class NewsService {
 
     public String addNews(News news){
         try {
-            newsRepository.save(news);
+            newsRepository.insert(news);
             return "created news successfully";
         }catch (Exception e){
             return "fail";
@@ -31,7 +31,7 @@ public class NewsService {
 
     public boolean updateNews(News news){
         try{
-            newsRepository.insert(news);
+            newsRepository.save(news);
             return true;
         }catch (Exception e){
             return false;

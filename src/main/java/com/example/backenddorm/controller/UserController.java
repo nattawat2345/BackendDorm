@@ -29,6 +29,7 @@ public class UserController {
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public User login(@RequestParam String username, @RequestParam String password) throws Exception {
+//        System.out.println(username+" "+ password);
      try {
          User user = userService.getUserByUsername(username);
          if (user == null) {
@@ -102,6 +103,10 @@ public class UserController {
     @RequestMapping(value ="/countUser", method = RequestMethod.GET)
     public int countUser(){
         return  userService.countUser();
+    }
+    @GetMapping("/getUserById/{id}")
+    public User getUserById(@PathVariable String id) throws Exception {
+        return userService.getUserById(id);
     }
 }
 

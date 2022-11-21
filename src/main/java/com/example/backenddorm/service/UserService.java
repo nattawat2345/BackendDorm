@@ -4,11 +4,11 @@ package com.example.backenddorm.service;
 import com.example.backenddorm.pojo.User;
 import com.example.backenddorm.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -72,5 +72,20 @@ public class UserService {
     public int countUser() {
         return (int) userRepository.count();
     }
+     public User getUserById(String id) throws Exception {
+        try {
+            Optional<User> user = userRepository.findById(id);
+            if( user!=null ){
+                return user.get();
+            }
+            else {
+                return null;
+            }
+        }catch (Exception e){
+            throw new Exception(e);
+        }
+
+
+     }
 }
 

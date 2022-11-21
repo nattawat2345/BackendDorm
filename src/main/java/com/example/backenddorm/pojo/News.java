@@ -5,6 +5,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serializable;
+import java.util.List;
 
 @Data
 @Document("News")
@@ -15,12 +16,12 @@ public class News implements Serializable {
     private String text;
     private String created_date;
     private int created_byId;
-    private String url;
+    private List<String> url;
 
     public News() {
     }
 
-    public News(String _id, String title, String text, String created_date, int created_byId, String url) {
+    public News(String _id, String title, String text, String created_date, int created_byId, List<String> url) {
         this._id = _id;
         this.title = title;
         this.text = text;

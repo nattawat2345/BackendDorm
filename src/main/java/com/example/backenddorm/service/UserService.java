@@ -36,7 +36,7 @@ public class UserService {
 
     public boolean updateUser(User user){
         try {
-//            userRepository.save(user);
+            userRepository.save(user);
             return true;
         }catch (Exception e){
             return false;
